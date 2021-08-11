@@ -8,7 +8,7 @@ const {
   showingFileExt,
   isFileMd,
   searchFilesMdInDirectory,
-
+  linksOfFileMd,
 } = require('../api')
 
 
@@ -85,7 +85,7 @@ describe('isFileMd', () => {
   it('should be a function', () => {
     expect(typeof isFileMd).toBe('function');
   });
-  it('should be stored the file in an array if file is`.md`', () => {
+  it('should store the file in an array if file is`.md`', () => {
     expect(isFileMd('./fixedPathFiles/tips.md')).not.toHaveLength(2);
   });
   it('should be an empty array if file is not`.md`', () => {
@@ -101,5 +101,19 @@ describe('searchFilesMdInDirectory', () => {
   it('should return an array with total files`.md`', () => {
     expect(searchFilesMdInDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles'))
       .not.toHaveLength(0);
+  });
+});
+
+
+//Test: **VERIFICANDO SI archivo.md TIENE LINKS, Y GUARDANDO SUS PROPIEDADES EN ARRAY***
+describe('linksOfFileMd', () => {
+  it('should be a function', () => {
+    expect(typeof linksOfFileMd).toBe('function');
+  });
+  it('should store the properties of each link in an array if file has links', () => {
+    expect(linksOfFileMd(['./fixedPathFiles/tips.md'])).not.toHaveLength(0);
+  });
+  it('should be an empty array if there are not links', () => {
+    expect(linksOfFileMd(['./fixedPathFiles/tips.txt'])).not.toHaveLength(1);
   });
 });
