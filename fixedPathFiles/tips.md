@@ -1,3 +1,10 @@
+# LINKS DE PRUEBA
+[Algo](http://algo.com/2/3/)
+[AlgunDoc](https://otra-cosa.net/algun-doc.html)
+[Google](http://google.com/)
+[Prueba](http://www.midominio.es/doc-nuevo.html)
+
+
 ## 10. Achicando el problema
 
 Un "superpoder" que esperamos puedas desarrollar durante el bootcamp
@@ -18,7 +25,7 @@ Es por ello que, para visualizar mejor lo que tendrás que hacer
 y planificar tus tareas y objetivos, es recomendable hacer un
 `diagrama de flujo`.
 
-Si nunca has hecho un diagrama de flujo revisa este [recurso](https://www.youtube.com/watch?v=Lub5qOmY4JQ).
+Si nunca has hecho un diagrama de flujo revisa esto...
 
 Una alternativa al diagrama de flujo puede ser el `pseudocódigo`.
 
@@ -31,7 +38,7 @@ Mediante **issues** y **milestones** podrás organizar y planificar
 tareas y objetivos concretos.
 
 Tomando en consideración los **entregables** del proyecto, el
-[9. Checklist](#9-checklist) y los **pasos** que definiste en tu
+checklist y los **pasos** que definiste en tu
 `diagrama de flujo`, crea tu planificación en GitHub Projects.
 
 ### Antes de codear

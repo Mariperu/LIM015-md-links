@@ -86,7 +86,7 @@ describe('isFileMd', () => {
     expect(typeof isFileMd).toBe('function');
   });
   it('should store the file in an array if file is`.md`', () => {
-    expect(isFileMd('./fixedPathFiles/tips.md')).not.toHaveLength(2);
+    expect(isFileMd('./fixedPathFiles/tips.md')).not.toHaveLength(0);
   });
   it('should be an empty array if file is not`.md`', () => {
     expect(isFileMd('./fixedPathFiles/tips.txt')).not.toHaveLength(1);
