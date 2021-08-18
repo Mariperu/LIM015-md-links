@@ -1,35 +1,35 @@
-// module.exports = () => {
-//   // ...
-// };
-
 const {
-  isPath,
-
+  isPath, //Verifica si existe ruta
+  isPathAbsolute, //Verifica y transforma a ruta abs
+  isPathFile, //Verifica si es archivo
+  isPathDirectory, //Verifica si es directorio
+  showingFileExt, //Muestra extensión de archivo
+  isFileMd, //Verifica si file es .md y almacena en un array
+  searchFilesMdInDirectory, //Busca archivos.md en directorio/subdirectorio
+  linksOfFileMd, //Lee archivo.md, busca links <a> y almacena sus prop en un array
+  validateTrue, //Recibe prop de links, retorna promesas y almacena status de cada link en array
 } = require('./api');
 
-// Prueba validar si existe path, con ruta fija
-// let fixedPath = './fixedPathFiles/tips.txt';
-// console.log("Existe la ruta?: ", pathChecking(fixedPath))
-// fixedPath = './fixedPathFiles/tips.mdd';
-// console.log("Existe la ruta?: ", pathChecking(fixedPath))
 
-// fixedPath = './fixedPathFiles/tips.md';
-// console.log("Existe la ruta?: ", pathChecking(fixedPath))
-// // Prueba validar ruta o convertirla en absoluta
-// console.log("La ruta absoluta es: ", pathAbsolute(fixedPath))
-// // Prueba validar si path es directorio
-// console.log("es Directorio?: ", pathDirectory(fixedPath))
-// // Prueba validar si path es file
-// console.log("es Archivo?: ", pathFile(fixedPath))
-// //console.log("es Archivo?2: ", pathFile2(fixedPath))
+const myPath = process.argv[2];
 
-// fixedPath = './fixedPathFiles';
-// console.log("es Directorio?: ", pathDirectory(fixedPath))
-// //console.log("Cuales son los archivos?: ", pathFile2(fixedPath))
-
-// fixedPath = './pic';
-// //console.log("Cuales son los archivos?22: ", pathFile2(fixedPath))
+//PRUEBAS
+//console.log("Existe la ruta?: ", isPath(myPath))
+//console.log("La ruta absoluta es: ", isPathAbsolute(myPath));
+//console.log("ruta es archivo?: ", isPathFile(myPath));
+//console.log("ruta es Directorio?: ", isPathDirectory(myPath))
+//console.log("extension de archivo es?: ", showingFileExt(myPath))
+//console.log("Mostrar archivo .md en array: ", isFileMd(myPath))
+//console.log("Contenido de files .md en directorio:\n", searchFilesMdInDirectory(myPath));
+//console.log("que hay en cada link?: ", linksOfFileMd([myPath]));
+//console.log("Array de obj status:\n", validateTrue(linksOfFileMd([myPath])));
 
 // // const mdLinks = (path, options) => {
 // //
 // // }
+
+
+
+// module.exports = () => {
+//   // ...
+// };

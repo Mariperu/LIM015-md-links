@@ -1,1 +1,1 @@
-abc, para verificar si reconocen dentro de un sub-directorio
+abc, para verificar si reconocen 
