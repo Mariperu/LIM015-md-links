@@ -12,17 +12,23 @@ const marked = require('marked');
 //Para ejecutar jsdom, se necesita principalmente del constructor JSDOM
 const jsdom = require('jsdom');
 //JSDOM es una exportación con nombre del módulo principal de jsdom
-//Objeto JSDOM, tiene una serie de propiedades útiles
+//Objeto JSDOM, tiene una serie de propiedades útiles.
 const {
   JSDOM
 } = jsdom;
-
+//Ejecutando módulo "node-fetch", que habilita el uso de fetch()
+//Método fecth(), para hacer http require/response asíncronas.
 const fetch = require('node-fetch');
 
+
+//process.argv[], matriz que contiene los argumentos de la línea de comando.
+//[0]y[1] se ignoran, son nativos de node.js. [2]: contiene el argumento.
+//ejm: ["node","file.js","<argument>",...]  =  node api ./fixedPathFiles
 const myPath = process.argv[2];
 //*****C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles
-//***** ./fixedPathFiles/tips.md
-//*** ./fixedPathFiles/tips.txt
+//para terminal: C:/Users/Teo/Documents/GitHub/LIM015-md-links/fixedPathFiles/tips.md
+//para terminal: ./fixedPathFiles/tips.md
+
 
 
 //VERIFICANDO SI EXISTE LA RUTA**
@@ -31,7 +37,7 @@ const isPath = (myPath) => fs.existsSync(myPath);
 //console.log("Existe la ruta?: ", isPath(myPath));
 
 
-//VERIFICANDO SI RUTA ES ABSOLUTA**, de lo contrario, **TRANSFORMAR RELATIVA EN ABSOLUTA**
+//**//VERIFICANDO SI RUTA ES ABSOLUTA**, de lo contrario, **TRANSFORMAR RELATIVA EN ABSOLUTA**
 //método path.isAbsolute, determina si path es ruta absoluta, **devuelve un booleano**
 //método path.resolve(), resuelve una secuencia o segmentos de ruta en una **ruta absoluta**
 const isPathAbsolute = (myPath) => (path.isAbsolute(myPath)) ?
@@ -113,7 +119,7 @@ const searchFilesMdInDirectory = (pathAbs) => {
 //console.log("Contenido de files .md en directorio:\n", searchFilesMdInDirectory(myPath));
 
 
-//*VERIFICANDO SI archivo.md TIENE LINKS, Y GUARDANDO SUS PROPIEDADES {href, text, file} EN ARRAY***
+//*****VERIFICANDO SI archivo.md TIENE LINKS, Y GUARDANDO SUS PROPIEDADES {href, text, file} EN ARRAY***
 //validate:false
 const linksOfFileMd = (arrayFilesMd) => {
   const arrayOfLinksProperties = [];
@@ -128,10 +134,9 @@ const linksOfFileMd = (arrayFilesMd) => {
     //** Pasando texto md a html **
     //marked.lexer(), crea una serie (array) de tokens, que pasará al marked.parser()
     //tokens: objetos {} con propiedades que describen cada parte de texto .md
-    const tokens = marked.lexer(readingFileMd);
+    const tokens = marked.lexer(readingFileMd); //obj describe c/linea del file
     //marked.parser(), procesa cada token en la matriz de tokens (para pasarlo a html).
     const html = marked.parser(tokens);
-    //console.log("Texto en html:\n", html)
 
     //** RECREANDO DOM, se utiliza propiedad "window"
     const dom = new JSDOM(html);
@@ -150,59 +155,221 @@ const linksOfFileMd = (arrayFilesMd) => {
   return arrayOfLinksProperties;
 };
 //console.log("que hay en cada link?: ", linksOfFileMd([myPath]));
-//node api ./fixedPathFiles/tips.md
 
 
 
-//***ALMACENANDO STATUS DE LINKS {href, text, file, status, statusText} EN ARRAY***
-// validate:true
-const validateTrue = (arrayLinks) => {
+//*****ALMACENANDO STATUS DE LINKS {href, text, file, status, statusText} EN ARRAY***
+const linksStatusOfFileMd = (arrayLinks) => {
   //console.log("esto ingresó: ", arrayLinks)
+
   const arrayOfLinksStatus = [];
   arrayLinks.forEach((link) => {
     //fetch(url) devuelve una promesa, promesa devuelve un objeto con datos del link
     arrayOfLinksStatus.push(fetch(link.href)
-      .then((response) => { //Cuando promesa es resuelta
-        console.log("Resolve", { //Objeto
-          //({ //*
-          href: link.href,
-          text: link.text,
-          file: link.file,
-          status: response.status,
-          statusText: (response.statusText >= 200 && response.statusText < 400) ?
-            'ok' : 'fail',
-        });
+      .then((response) => { //Cuando promesa es resuelta, response es un callback
+        //console.log("Resolve", { //Objeto
+        if (response.status >= 200 && response.status < 400) {
+          return `${link.href}  ${link.text}  ${link.file}  ${response.status}  'ok'`;
+        } else {
+          return `${link.href}  ${link.text}  ${link.file}  ${response.status}  'fail'`;
+        }
       })
       .catch(() => { //Cuando promesa es rechazada
-        console.log("Rejected", { //Objeto
-          //({ //*
-          href: link.href,
-          text: link.text,
-          file: link.file,
-          status: "error", //???
-          statusText: 'fail' //???
-        });
+        //console.log("Rejected", { //Objeto
+        return `${link.href}  ${link.text}  ${link.file}  'error'  'fail'`;
       }));
   });
-  return arrayOfLinksStatus;
+  //return arrayOfLinksStatus;
+  //Promise.all: método estático
+  //Cuando se hayan ejecutado todas las peticiones se cumplirá la promesa.
+  return Promise.all(arrayOfLinksStatus);
 }
-console.log(validateTrue(linksOfFileMd([myPath])));
-//validateTrue(linksOfFileMd([myPath]));
+// Promise.all(linksStatusOfFileMd(linksOfFileMd([myPath]))).then((resp) => console.log((resp)));
+//** linksStatusOfFileMd(linksOfFileMd([myPath])).then((resp) => console.log((resp)));
+
+
+
+
+//RESPUESTA DE PROMESA final (descifrando promesa)
+const validateResponse = (myPath, options) => {
+  //Verificando si ruta es arhivo (true)
+  if (isPathFile(myPath)) { //if true
+    if (showingFileExt(myPath) === '.md') { //verificando extension.md
+
+      const arrayFileMd = isFileMd(myPath); //Array almacena un archivo.md
+      const arrayLinksOfFileMd = linksOfFileMd(arrayFileMd); //array extrae {href, text, file} de c/link
+
+      if (arrayLinksOfFileMd.length > 0) { //si archivo.md tiene links
+
+        if (options.validate) { //{ validate : true }
+          //***POR MEJORAR */
+          linksStatusOfFileMd(arrayLinksOfFileMd)
+            .then((response) => console.log(response));
+          //return linksStatusOfFileMd(arrayLinksOfFileMd); //Retorna array de {status}
+        } else {
+          return arrayLinksOfFileMd; //Retorna {href, text, file}
+        }
+      }
+      return chalk.blue('La ruta no tiene links dentro de archivo markdown.')
+    }
+    return chalk.yellow('La ruta no es archivo markdown.')
+  }
+
+  //Cuando ruta es directorio/sub-directorio, se busca archivos.md
+  const arrayFilesMdInD = searchFilesMdInDirectory(myPath); //Extrae archivos.md en array
+  const arrayLinksOfFileMdD = linksOfFileMd(arrayFilesMdInD); //array extrae {href, text, file} de c/link de c/file
+
+  if (arrayLinksOfFileMdD.length > 0) {
+    if (options.validate) { //{ validate : true }
+      //***POR MEJORAR */
+      linksStatusOfFileMd(arrayLinksOfFileMdD)
+        .then((response) => console.log(response));
+      //return linksStatusOfFileMd(arrayLinksOfFileMdD); //Retorna array de {status}
+    } else {
+      return arrayLinksOfFileMdD; //Retorna {href, text, file}
+    }
+  }
+  return chalk.blue('La ruta es un directorio vacío y/o no contiene archivos markdown con links.')
+};
+
+console.log("Respuesta de {validate:true}:\n", validateResponse(myPath, {
+  validate: true
+}));
+// console.log("Respuesta de {validate false}:\n", validateResponse(myPath, {
+//   validate: false
+// }));
+
 
 
 
 
 module.exports = {
   isPath, //Verifica si existe ruta
-  isPathAbsolute, //Verifica y transforma a ruta
+  isPathAbsolute, //Verifica y transforma a ruta abs
   isPathFile, //Verifica si es archivo
   isPathDirectory, //Verifica si es directorio
   showingFileExt, //Muestra extensión de archivo
   isFileMd, //Verifica si file es .md y almacena en un array
   searchFilesMdInDirectory, //Busca archivos.md en directorio/subdirectorio
   linksOfFileMd, //Lee archivo.md, busca links <a> y almacena sus prop en un array
-  validateTrue, //Recibe prop de links, retorna promesas y almacena status de cada link en array
+  linksStatusOfFileMd, //Recibe prop de links, retorna promesas y almacena status de cada link en array
+  validateResponse, //Respuesta de promesas
 };
+
+
+
+//new promise
+// return new Promise((resolve, reject) => {
+//   if (options.validate === true) {
+//     Promise.all(linksStatusOfFileMd(arrayLinksOfFileMd)).then((res) => resolve(res));
+//   } else {
+//     resolve(arrayLinksOfFileMd);
+//   }
+// });
+
+
+//*****ALMACENANDO STATUS DE LINKS {href, text, file, status, statusText} EN ARRAY***
+// const linksStatusOfFileMd = (arrayLinks) => {
+//   //console.log("esto ingresó: ", arrayLinks)
+
+//   const arrayOfLinksStatus = [];
+//   arrayLinks.forEach((link) => {
+//     //new Promise((resolve) =>{
+//     //fetch(url) devuelve una promesa, promesa devuelve un objeto con datos del link
+//     arrayOfLinksStatus.push(fetch(link.href)
+//       .then((response) => { //Cuando promesa es resuelta, response es un callback
+//         //console.log("Resolve", { //Objeto
+//         return ({ //*
+//           href: link.href,
+//           text: link.text,
+//           file: link.file,
+//           status: response.status,
+//           statusText: (response.statusText >= 200 && response.statusText < 400) ?
+//             'ok' : 'fail',
+//         });
+//       })
+//       .catch(() => { //Cuando promesa es rechazada
+//         //console.log("Rejected", { //Objeto
+//         return ({ //*
+//           href: link.href,
+//           text: link.text,
+//           file: link.file,
+//           status: "error", //???
+//           statusText: 'fail' //???
+//         });
+//       })
+//       //.finally(() => console.log("Terminado."))
+//     );
+//     //})
+//   });
+//   //console.log(Promise.all(arrayOfLinksStatus).then((res) => resolve(res)))
+//   //return Promise.allSettled(arrayOfLinksStatus);
+//   //return arrayOfLinksStatus;
+//   return Promise.all(arrayOfLinksStatus) //*
+//   //return Promise.resolve(arrayOfLinksStatus)
+//   //console.log(arrayOfLinksStatus);
+// }
+// //console.log("Array de obj status:\n", linksStatusOfFileMd(linksOfFileMd([myPath])));
+// //*****/ Promise.all(linksStatusOfFileMd(linksOfFileMd([myPath]))).then((resp) => console.log((resp)));
+
+// //Promise.all(linksStatusOfFileMd(linksOfFileMd([myPath]))).then((resp) => console.log((resp)));
+// linksStatusOfFileMd(linksOfFileMd([myPath])).then((resp) => console.log((resp)));
+
+
+
+
+
+
+
+//RESPUESTA DE PROMESA final (descifrando promesa)
+// const validateResponse = (myPath, options) => {
+//   //Verificando si ruta es arhivo (true)
+//   if (isPathFile(myPath)) { //if true
+//     if (showingFileExt(myPath) === '.md') { //verificando extension.md
+
+//       const arrayFileMd = isFileMd(myPath); //Array almacena un archivo.md
+//       const arrayLinksOfFileMd = linksOfFileMd(arrayFileMd); //array extrae {href, text, file} de c/link
+
+//       if (arrayLinksOfFileMd.length > 0) { //si archivo.md tiene links
+//         //return new Promise((resolve, reject) => { //*
+//         if (options.validate) { //{ validate : true }
+//           return linksStatusOfFileMd(arrayLinksOfFileMd); //Retorna array de {status}
+//           //return Promise.resolve(linksStatusOfFileMd(arrayLinksOfFileMd))
+//           // return Promise.all(linksStatusOfFileMd(arrayLinksOfFileMd)).then((resp) => ((resp)));
+//           //return Promise.all(linksStatusOfFileMd(arrayLinksOfFileMd)).then((res) => resolve(res));
+//         }
+//         //return Promise.resolve(arrayLinksOfFileMd);
+//         return arrayLinksOfFileMd; //Retorna {href, text, file}
+//         //resolve(arrayLinksOfFileMd);
+//         //}) //*
+//       }
+//       //return Promise.resolve('La ruta no tiene links dentro de archivo markdown.');
+//       return ('La ruta no tiene links dentro de archivo markdown.')
+//     }
+//     return ('La ruta no es archivo markdown.')
+//   }
+
+//   //Cuando ruta es directorio/sub-directorio, se busca archivos.md
+//   const arrayFilesMdInD = searchFilesMdInDirectory(myPath); //Extrae archivos.md en array
+//   const arrayLinksOfFileMdD = linksOfFileMd(arrayFilesMdInD); //array extrae {href, text, file} de c/link de c/file
+
+//   if (arrayLinksOfFileMdD.length > 0) {
+//     if (options.validate) {
+//       return linksStatusOfFileMd(arrayLinksOfFileMdD);
+//     }
+//     return Promise.resolve(arrayLinksOfFileMdD);
+//   }
+//   //return Promise.resolve('La ruta es un directorio vacío y/o no contiene archivos markdown.');
+//   return ('La ruta es un directorio vacío y/o no contiene archivos markdown con links.')
+// };
+
+// console.log("Respuesta de {validate:true}:\n", validateResponse(myPath, {
+//   validate: true
+// }));
+// // console.log("Respuesta de {validate false}:\n", validateResponse(myPath, {
+// //   validate: false
+// // }));
+
 
 
 
@@ -216,18 +383,43 @@ module.exports = {
 // }, 50);
 
 
+//MDLINKS UNIENDO TODO
+// const mdLinks = (myPath, options) => {
+//   const promise = new Promise((resolve, reject) => {
+//     // Verificamos rutas absolutas
+//     const verifiedRoute = isPathAbsolute(myPath);
+//     // console.log(verifiedRoute)
+//     if (!fs.existsSync(verifiedRoute)) {
+//       reject(new Error(`${chalk.red('RUTA INVÁLIDA')}`));
+//     }
+//     if (options !== undefined) {
+//       if (options.validate) {
+//         resolve(linksStatusOfFileMd(linksOfFileMd([verifiedRoute]))); //** */
+//       }
+
+//       if (!options.validate) {
+//         resolve(linksOfFileMd([verifiedRoute]));
+//       }
+//     } else {
+//       resolve(linksOfFileMd([verifiedRoute]));
+//     }
+//   });
+//   return promise;
+// };
+// console.log(mdLinks(myPath, {
+//   validate: false
+// }));
 
 
-
-// /********** */
-// const responseValidate = (pathValidated, opts) => {
+// /*/
+// const validateResponse= (pathValidated, opts) => {
 //   if (isPathFile(pathValidated)) {
-//     const arrayArchivesMarkdown = isFileMd(pathValidated);
-//     const arrayLinksOfMarkdown = linksOfFileMd(arrayArchivesMarkdown);
+//     const arrayFileMd = isFileMd(pathValidated);
+//     const arrayLinksOfMarkdown = linksOfFileMd(arrayFileMd);
 
 //     if (arrayLinksOfMarkdown.length > 0) {
 //       if ((opts !== undefined) && opts.validate) {
-//         return validateTrue(arrayLinksOfMarkdown);
+//         return linksStatusOfFileMd(arrayLinksOfMarkdown);
 //       }
 
 //       return Promise.resolve(arrayLinksOfMarkdown);
@@ -236,12 +428,12 @@ module.exports = {
 //     return Promise.resolve('La ruta ingresada corresponde a un archivo que no es markdown.');
 //   }
 
-//   const arrayArchivesMarkdown = searchFilesMdInDirectory(pathValidated);
-//   const arrayLinksOfMarkdown = linksOfFileMd(arrayArchivesMarkdown);
+//   const arrayFileMd = searchFilesMdInDirectory(pathValidated);
+//   const arrayLinksOfMarkdown = linksOfFileMd(arrayFileMd);
 
 //   if (arrayLinksOfMarkdown.length > 0) {
 //     if ((opts !== undefined) && opts.validate) {
-//       return validateTrue(arrayLinksOfMarkdown);
+//       return linksStatusOfFileMd(arrayLinksOfMarkdown);
 //     }
 
 //     return Promise.resolve(arrayLinksOfMarkdown);
@@ -249,35 +441,4 @@ module.exports = {
 
 //   return Promise.resolve('La ruta ingresada corresponde a un directorio vacío o bien, no contiene archivos markdown.');
 // };
-// console.log("que hay?: ", responseValidate(myPath));
-// //console.log("que hay?: ", responseValidate('fixedPathFiles'))
-// //console.log("que hay?: ", responseValidate('./fixedPathFiles/moreABC'))
-// //console.log("que hay?: ", responseValidate('README.md'))
-
-
-
-
-
-
-
-
-
-
-
-// const validateLinks = (arrayL) => arrayL.map((obj) => fetch(obj.href)
-//   .then((res) => ({
-//     href: obj.href,
-//     text: obj.text,
-//     file: obj.file,
-//     status: res.status,
-//     message: res.status === 200 ? 'OK' : 'FAIL',
-//   }))
-//   .catch(() => ({
-//     href: obj.href,
-//     text: obj.text,
-//     file: obj.file,
-//     status: 500,
-//     message: 'BROKEN',
-//   })));
-
-//console.log("que hay en cada link STATUS?: ", validateLinks(linksOfFileMd([myPath])));
+// console.log("que hay?: ", validateResponse(myPath));
