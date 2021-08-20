@@ -1,16 +1,14 @@
-//test: npm test ../api.spec.js
+//test: npm test ../path.spec.js
 
 const {
-  isPath,
-  isPathAbsolute,
-  isPathFile,
-  isPathDirectory,
-  showingFileExt,
-  isFileMd,
-  searchFilesMdInDirectory,
-  linksOfFileMd,
-} = require('../api')
-
+  isPath, //Verifica si existe ruta
+  isPathAbsolute, //Verifica y transforma a ruta abs
+  isPathFile, //Verifica si es archivo
+  isPathDirectory, //Verifica si es directorio
+  showFileExt, //Muestra extensión de archivo
+  //readDirectory, //Lee un directorio
+  //readFileMd, //Lee un archivo en terminal
+} = require('../src/api/path')
 
 //Test: **VERIFICANDO SI EXISTE LA RUTA**
 describe('isPath', () => {
@@ -24,6 +22,7 @@ describe('isPath', () => {
     expect(isPath('./fixedPathFiles/tips.mdd')).toBe(false);
   });
 });
+
 
 //Test: **VERIFICANDO SI RUTA ES ABSOLUTA**, de lo contrario, **TRANSFORMAR RELATIVA EN ABSOLUTA**
 describe('isPathAbsolute', () => {
@@ -40,20 +39,22 @@ describe('isPathAbsolute', () => {
   });
 });
 
+
 //Test: **VERIFICANDO SI RUTA ABSOLUTA ES ARCHIVO**
 describe('isPathFile', () => {
   it('should be a function', () => {
     expect(typeof isPathFile).toBe('function');
   });
   it('should return true if path is a file', () => {
-    expect(isPathFile('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles\\tips.md'))
+    expect(isPathFile('./fixedPathFiles/tips.md'))
       .toBe(true);
   });
   it('should return false if path is not a file', () => {
-    expect(isPathFile('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles'))
+    expect(isPathFile('./fixedPathFiles'))
       .toBe(false);
   });
 });
+
 
 //Test: **VERIFICANDO SI RUTA ABSOLUTA ES DIRECTORIO**
 describe('isPathDirectory', () => {
@@ -70,50 +71,13 @@ describe('isPathDirectory', () => {
   });
 });
 
+
 //Test: **MOSTRANDO EXTENSION DE ARCHIVO**
-describe('showingFileExt', () => {
+describe('showFileExt', () => {
   it('should be a function', () => {
-    expect(typeof showingFileExt).toBe('function');
+    expect(typeof showFileExt).toBe('function');
   });
   it('should show the file extension', () => {
-    expect(showingFileExt('./fixedPathFiles/tips.md')).toBe('.md');
-  });
-});
-
-//Test: **VERIFICANDO SI ARCHIVO ES .md, luego ALMACENAR en un array**
-describe('isFileMd', () => {
-  it('should be a function', () => {
-    expect(typeof isFileMd).toBe('function');
-  });
-  it('should store the file in an array if file is`.md`', () => {
-    expect(isFileMd('./fixedPathFiles/tips.md')).not.toHaveLength(0);
-  });
-  it('should be an empty array if file is not`.md`', () => {
-    expect(isFileMd('./fixedPathFiles/tips.txt')).not.toHaveLength(1);
-  });
-});
-
-//Test: **BUSCANDO ARCHIVOS CON EXTENCION .md en DIRECTORIOS/SUBDIRECTORIOS, y almacenarlos en un array**
-describe('searchFilesMdInDirectory', () => {
-  it('should be a function', () => {
-    expect(typeof searchFilesMdInDirectory).toBe('function');
-  });
-  it('should return an array with total files`.md`', () => {
-    expect(searchFilesMdInDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles'))
-      .not.toHaveLength(0);
-  });
-});
-
-
-//Test: **VERIFICANDO SI archivo.md TIENE LINKS, Y GUARDANDO SUS PROPIEDADES EN ARRAY***
-describe('linksOfFileMd', () => {
-  it('should be a function', () => {
-    expect(typeof linksOfFileMd).toBe('function');
-  });
-  it('should store the properties of each link in an array if file has links', () => {
-    expect(linksOfFileMd(['./fixedPathFiles/tips.md'])).not.toHaveLength(0);
-  });
-  it('should be an empty array if there are not links', () => {
-    expect(linksOfFileMd(['./fixedPathFiles/tips.txt'])).not.toHaveLength(1);
+    expect(showFileExt('./fixedPathFiles/tips.md')).toBe('.md');
   });
 });
