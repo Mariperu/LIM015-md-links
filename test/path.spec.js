@@ -4,10 +4,10 @@ const {
   isPath, //Verifica si existe ruta
   isPathAbsolute, //Verifica y transforma a ruta abs
   isPathFile, //Verifica si es archivo
-  isPathDirectory, //Verifica si es directorio
+  //isPathDirectory, //Verifica si es directorio
   showFileExt, //Muestra extensión de archivo
-  //readDirectory, //Lee un directorio
-  //readFileMd, //Lee un archivo en terminal
+  readDirectory, //Lee un directorio
+  readFileMd, //Lee un archivo en terminal
 } = require('../src/api/path')
 
 //Test: **VERIFICANDO SI EXISTE LA RUTA**
@@ -57,19 +57,19 @@ describe('isPathFile', () => {
 
 
 //Test: **VERIFICANDO SI RUTA ABSOLUTA ES DIRECTORIO**
-describe('isPathDirectory', () => {
-  it('should be a function', () => {
-    expect(typeof isPathDirectory).toBe('function');
-  });
-  it('should return true if path is a directory', () => {
-    expect(isPathDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles'))
-      .toBe(true);
-  });
-  it('should return false if path is not a directory', () => {
-    expect(isPathDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles\\tips.md'))
-      .toBe(false);
-  });
-});
+// describe('isPathDirectory', () => {
+//   it('should be a function', () => {
+//     expect(typeof isPathDirectory).toBe('function');
+//   });
+//   it('should return true if path is a directory', () => {
+//     expect(isPathDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles'))
+//       .toBe(true);
+//   });
+//   it('should return false if path is not a directory', () => {
+//     expect(isPathDirectory('C:\\Users\\Teo\\Documents\\GitHub\\LIM015-md-links\\fixedPathFiles\\tips.md'))
+//       .toBe(false);
+//   });
+// });
 
 
 //Test: **MOSTRANDO EXTENSION DE ARCHIVO**
@@ -79,5 +79,25 @@ describe('showFileExt', () => {
   });
   it('should show the file extension', () => {
     expect(showFileExt('./fixedPathFiles/tips.md')).toBe('.md');
+  });
+});
+
+//Test: **LEER DIRECTORIO**
+describe('readDirectory', () => {
+  it('should be a function', () => {
+    expect(typeof readDirectory).toBe('function');
+  });
+  it('should read a directory', () => {
+    expect(readDirectory('./fixedPathFiles/moreABC')).toEqual(['abc.md']);
+  });
+});
+
+//Test: **LEER UN ARCHIVO**
+describe('readFileMd', () => {
+  it('should be a function', () => {
+    expect(typeof readFileMd).toBe('function');
+  });
+  it('should read a file', () => {
+    expect(readFileMd('./fixedPathFiles/moreABC/abc.md')).toEqual('Texto de prueba');
   });
 });
