@@ -1,2 +1,3 @@
-## Archivo extra
-Para verificar si me reconocen dentro de un subdirectorio.
+[Algo](http://algo.com/2/3/)
+[Prueba](http://www.midominio.es/doc-nuevo.html)
+[AlgunDoc](https://otra-cosa.net/algun-doc.html)
