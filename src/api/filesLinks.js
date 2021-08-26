@@ -1,9 +1,7 @@
 //FUNCIONES PARA EXTRAER INFORMACION DE LINKS en array
 
-//TERMINAL: node ./src/api/filesLinks.js ./fixedPathFiles
+//TERMINAL: node ./src/api/filesLinks.js ./test/directory
 
-//Ejecutando módulo chalk, para colocar colores en líneas de comando
-//const chalk = require('chalk');
 
 //Ejecutando módulo marked, compilador de bajo nivel, liviano, sencillo
 //para analizar archivos markdown, construido para brindar velocidad
@@ -23,10 +21,10 @@ const fetch = require('node-fetch');
 
 
 const {
-  readFileMd, //Lee un archivo en terminal
+  readFileMd,
 } = require('./path');
 const {
-  searchFilesMd, //Devuelve array con todos los files.md
+  searchFilesMd, //array
 } = require('./filesMd');
 
 //const myPath = process.argv[2];
@@ -59,7 +57,7 @@ const linksOfFileMd = (myPath) => {
   });
   return arrayLinksProperties;
 };
-//console.log("que hay en cada link?: ", linksOfFileMd(myPath));
+//console.log(linksOfFileMd(myPath));
 
 
 //ALMACENANDO STATUS DE LINKS {href, text, file, status, statusText} EN ARRAY***
@@ -71,7 +69,6 @@ const linksStatus = (arrayLinks) => {
       .then((response) => { //Cuando promesa es resuelta, response es un callback
         //console.log(response);
         if (response.status >= 200 && response.status < 400) {
-          //return `${chalk.magenta(link.file)} ${chalk.white(link.href)} ${chalk.cyanBright(link.text)} ${chalk.greenBright(response.status)} ${chalk.green('ok')}`;
           return {
             file: link.file,
             href: link.href,
@@ -80,7 +77,6 @@ const linksStatus = (arrayLinks) => {
             statusText: 'ok',
           }
         } else {
-          //return `${chalk.magenta(link.file)} ${chalk.white(link.href)} ${chalk.cyanBright(link.text)} ${chalk.yellowBright(response.status)} ${chalk.yellow('fail')}`;
           return {
             file: link.file,
             href: link.href,
@@ -91,7 +87,6 @@ const linksStatus = (arrayLinks) => {
         }
       })
       .catch(() => { //Cuando promesa es rechazada //Rejected
-        //return `${chalk.magenta(link.file)} ${chalk.white(link.href)} ${chalk.cyanBright(link.text)} ${chalk.redBright('error fail')}`;
         return {
           file: link.file,
           href: link.href,
@@ -109,6 +104,6 @@ const linksStatus = (arrayLinks) => {
 
 
 module.exports = {
-  linksOfFileMd, //Lee archivo.md, busca links <a> y almacena sus prop en un array
-  linksStatus, //Recibe prop de links, retorna promesas y almacena status de cada link en array
+  linksOfFileMd, //array
+  linksStatus, //array de promesas
 };

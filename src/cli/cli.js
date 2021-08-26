@@ -2,11 +2,11 @@
  //VER https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
 //Para que se ejecute el módulo con npm
 
-
-
-//CLI - Interfaz de Línea de Comando
+//TERMINAL: node ./src/cli/cli.js ./test/directory/file1.md --validate
 //✔️❌❗️
-//TERMINAL: node ./src/cli/cli.js ./fixedPathFiles/tips.md --validate
+//CLI - Interfaz de Línea de Comando
+
+
 
 //Ejecutando módulo chalk, para colocar colores en líneas de comando
 const chalk = require('chalk');
@@ -27,7 +27,7 @@ const {
 
 const {
   mdLinks,
-} = require('../index');
+} = require('../api/mdLinks');
 
 //[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
 const argument = process.argv.slice(2); //para considerar arg[0]. desde posición 2
@@ -68,7 +68,7 @@ const cli = (argument) => {
           case '--stats':
             mdLinks(argument[0], {
               validate: true
-            }).then((respArray) => console.log(`${countTotal(respArray)}\n${countUnique(respArray)}`));
+            }).then((respArray) => console.log(`${chalk.cyanBright(countTotal(respArray))}\n${chalk.blueBright(countUnique(respArray))}`));
             break;
 
           case '--help':
@@ -86,7 +86,7 @@ const cli = (argument) => {
 
           mdLinks(argument[0], {
             validate: true
-          }).then((respArray) => console.log(`${countTotal(respArray)}\n${countUnique(respArray)}\n${countBroken(respArray)}`));
+          }).then((respArray) => console.log(`${chalk.cyanBright(countTotal(respArray))}\n${chalk.blueBright(countUnique(respArray))}\n${chalk.magentaBright(countBroken(respArray))}`));
         } else {
           console.log(chalk.cyanBright('Ingresa comandos válidos o escribe `--help` para ayudarte'));
         }
@@ -95,14 +95,14 @@ const cli = (argument) => {
       }
 
     } else {
-      console.log(chalk.blueBright('La ruta no tiene archivos Markdown con links.'))
+      console.log(chalk.blueBright('La ruta no tiene archivos Markdown con links.'));
     }
 
   } else {
-    console.log(chalk.redBright('La ruta no existe.'));
+    console.log(chalk.redBright(' ❌ La ruta no existe.'));
   }
 }
-cli(argument)
+cli(argument);
 
 
 module.exports = {

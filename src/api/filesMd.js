@@ -1,5 +1,5 @@
 //FUNCIONES PARA EXTRAER FILES .md en array
-//TERMINAL: node ./src/api/filesMd.js ./fixedPathFiles
+//TERMINAL: node ./src/api/filesMd.js ./test/directory
 
 
 //Ejecutando módulo path, contiene utilidades para trabajar con rutas de fichero
@@ -16,7 +16,7 @@ const {
 //const myPath = process.argv[2];
 
 
-//ELEMENTOS DENTRO DE DIRECTORIO/SUB-DIRECTORIOS, devuelve un array**
+//BUSCAR ELEMENTOS DENTRO DE DIRECTORIO/SUB-DIRECTORIOS, devuelve un array**
 const searchFilesAndDirs = (myPath) => {
   //método path.join(), une ruta directorio + nombre archivo/sub-dir, para obtener ruta completa
   return readDirectory(myPath).map((elem) => path.join(myPath, elem));
@@ -48,7 +48,8 @@ const searchFilesMd = (myPath) => {
 
 
 module.exports = {
-  searchFilesMd, //Devuelve array con todos los files.md
+  searchFilesAndDirs, //array
+  searchFilesMd, //array
 };
 
 
