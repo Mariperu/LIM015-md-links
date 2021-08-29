@@ -1,10 +1,10 @@
 # Markdown Links
 
 ## Índice
-- [1. Descripción del módulo](#1-descripción_del_módulo)
-- [2. Instrucciones de instalación](#2-instrucciones_de_instalación)
-- [3. Instrucciones de uso](#3-instrucciones_de_uso)
-- [4. Flowcharts API/CLI](#4-Flowcharts_API/CLI)
+- [1. Descripción del módulo](#1-descripción-del-módulo)
+- [2. Instrucciones de instalación](#2-instrucciones-de-instalación)
+- [3. Instrucciones de uso](#3-instrucciones-de-uso)
+- [4. Flowcharts API/CLI](#4-Flowcharts-API/CLI)
 ---
 
 ## 1. Descripción del módulo
@@ -24,9 +24,7 @@ npm i md-links-lim015
 - **Instalacion por github:**
   Ejemplo: `npm i --global  <github-user>/LIM015-mdlinks`
 
-Para hacer uso de la librería, esta se debe importar en tu archivo.js.
-
-Ejemplo: `const mdLinks = require('md-links-lim015')`
+Para hacer uso de la librería, esta se debe importar en tu archivo.js. Ejemplo: `const mdLinks = require('md-links-lim015')`
 
 
 ******PARA CONSIDERAR**.....:
