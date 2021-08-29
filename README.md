@@ -1,19 +1,19 @@
-# Markdown Links
+# 💻 Markdown Links 🔗
 
-## Índice
+## Índice 
 - [1. Descripción del módulo](#1-descripción-del-módulo)
 - [2. Instrucciones de instalación](#2-instrucciones-de-instalación)
 - [3. Instrucciones de uso](#3-instrucciones-de-uso)
 - [4. Flowcharts API/CLI](#4-Flowcharts)
 ---
 
-## 1. Descripción del módulo
+## 1. Descripción del módulo 👩‍💻
 
 Muchas veces cuando se quiere compartir información, existen partes de los archivos como son los links, que en el tiempo han quedado inválidos, no existen o han sido redireccionados, el cual perjudica el valor de lo que se quiere compartir. Por ello, nace la necesidad de crear una librería que ayude a optimizar esta información, por medio de la validación y algunos cálculos estadísticos de los links.
 
 **Markdown Links** es una librería que _permite extraer información de los links_ contenidos en  archivos con extensión ".md" (Markdown). La librería esta implementada en JavaScript para ser ejecutada con Node.js.
 
-## 2. Instrucciones de instalación
+## 2. Instrucciones de instalación 🔌
 ...Verificar, falta completar
 
 - **Intalacion por npm:**
@@ -33,9 +33,9 @@ Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Est
   comando como una interfaz que podamos importar con `require` para usarlo
   programáticamente.
 
-## 3. Instrucciones de uso
+## 3. Instrucciones de uso 📚
 
-Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link.
+💁 Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link. ✍️
 
 Por ejemplo `./test/directory/file1.md` devuelve:
 ```sh
@@ -47,7 +47,7 @@ C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://ww
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc
 ```
 
-Para **validar links**, ingresaremos a continuación de la ruta, la opción: **--validate**, del cual además de visualizar los datos anteriores, _mostrará el código de status de HTTP_ (como 200 o 404) y un mensaje _"ok"_ en caso de éxito o _"fail"_ en caso de fallo.
+💁 Para **validar links**, ingresaremos a continuación de la ruta, la opción: **--validate**, del cual además de visualizar los datos anteriores, _mostrará el código de status de HTTP_ (como 200 o 404) y un mensaje _"ok"_ en caso de éxito o _"fail"_ en caso de fallo. ✍️
 
 Por ejemplo `./test/directory/file1.md --validate` devuelve:
 ```sh
@@ -58,14 +58,14 @@ C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://ww
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc 404 fail
 ```
 
-Ingresando la opción: **--stats** luego de la ruta; la librería realizará **cálculos estadísticos**  basado en el **total de links** encontrados (_total_) y **links únicos** (_unique_).
+💁 Ingresando la opción: **--stats** luego de la ruta; la librería realizará **cálculos estadísticos**  basado en el **total de links** encontrados (_total_) y **links únicos** (_unique_). ✍️
 
 Por ejemplo `./test/directory/file1.md --stats` devuelve:
 ```
 Total: 5
 Unique: 4
 ```
-Además, si ingresamos en conjunto las opciones: **--validate --stats** (o viceversa) luego de la ruta, se mostrará también la cantidad de **links rotos** (_broken_) o en otras palabras, cantidad de links que contienen mensaje _"fail"_.
+💁 Además, si ingresamos en conjunto las opciones: **--validate --stats** (o viceversa) luego de la ruta, se mostrará también la cantidad de **links rotos** (_broken_) o en otras palabras, cantidad de links que contienen mensaje _"fail"_. ✍️
 
 Por ejemplo `./test/directory/file1.md --stats --validate` devuelve:
 ```
@@ -73,14 +73,14 @@ Total: 5
 Unique: 4
 Broken: 2
 ```
-En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_.
+💁En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_. ✍️
 
 Por ejemplo `./test/directory/file1.md --help` devuelve:
 ![Instructions](./src/img/instruc.jpg)
 
 
-## 4. Flowcharts
-- API
+## 4. Flowcharts 🔗
+- API 
 ![FlowchartAPI](./src/img/API.jpg)
 
 - CLI
@@ -608,7 +608,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 
 ### `README.md`
 
-- [ ] Un board con el backlog para la implementación de la librería.
+- [x] Un board con el backlog para la implementación de la librería.
 - [x] Documentación técnica de la librería.
 - [x] Guía de uso e instalación de la librería
 
