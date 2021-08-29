@@ -76,7 +76,7 @@ Broken: 2
 En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_.
 
 Por ejemplo `./test/directory/file1.md --help` devuelve:
-![Instrucciones](./src/img/instruc.jpg)
+![Instructions](./src/img/instruc.jpg)
 
 
 ## 4. Flowcharts API/CLI
