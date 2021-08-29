@@ -1,10 +1,10 @@
 # 💻 Markdown Links 🔗
 
 ## Índice 
-- [1. Descripción del módulo](#1-descripción-del-módulo)
-- [2. Instrucciones de instalación](#2-instrucciones-de-instalación)
-- [3. Instrucciones de uso](#3-instrucciones-de-uso)
-- [4. Flowcharts API/CLI](#4-Flowcharts)
+- [1. Descripción del módulo](#1-descripción-del-módulo-👩‍💻)
+- [2. Instrucciones de instalación](#2-instrucciones-de-instalación-🔌)
+- [3. Instrucciones de uso](#3-instrucciones-de-uso-📚)
+- [4. Flowcharts API/CLI](#4-Flowcharts-🔗)
 ---
 
 ## 1. Descripción del módulo 👩‍💻
