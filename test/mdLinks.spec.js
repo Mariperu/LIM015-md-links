@@ -4,12 +4,10 @@ const {
   mdLinks,
 } = require('../src/api/mdLinks')
 
-
 describe('mdLinks', () => {
   it('should be a function', () => {
     expect(typeof mdLinks).toBe('function');
   });
-
 
   it('should resolve a promise and return array of `links` if validate is `false`', () => {
     expect(mdLinks(myPath, {
@@ -17,13 +15,11 @@ describe('mdLinks', () => {
     })).toEqual("resuelve promesa y retorna array con 3 propiedades");
   });
 
-
   it('should resolve a promise and return array of `links Status` if validate is `true`', () => {
     expect(mdLinks(myPath, {
       validate: true
     })).toEqual("resuelve promesa y retorna array con 5 propiedades");
   });
-
 });
 
 

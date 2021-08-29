@@ -91,7 +91,7 @@ const linksStatus = (arrayLinks) => {
           file: link.file,
           href: link.href,
           text: link.text,
-          status: 'error',
+          status: '404',
           statusText: 'fail',
         }
       }));

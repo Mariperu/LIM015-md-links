@@ -24,7 +24,7 @@ describe('isPath', () => {
 });
 
 
-//VERIFICA Y RETORNA RUTA ES ABSOLUTA (Si ruta es relativa transforma a abs)
+//VERIFICA Y RETORNA RUTA ABSOLUTA
 describe('isPathAbsolute', () => {
   it('should be a function', () => {
     expect(typeof isPathAbsolute).toBe('function');
@@ -54,7 +54,6 @@ describe('isPathFile', () => {
       .toBe(false);
   });
 });
-
 
 
 //MUESTRA EXTENSION DE LA RUTA
