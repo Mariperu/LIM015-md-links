@@ -78,7 +78,7 @@ const cli = (argument) => {
             ${chalk.magentaBright('md-links <path-to-file>')} : muestra los links encontrados de la ruta ingresada.
             ${chalk.magentaBright('md-links <path-to-file> [options]')} : muestra información adicional de links encontrados.
             ${chalk.blueBright('<> Puedes ingresar las siguientes opciones:')}
-            ${chalk.greenBright('--valdate')} : para validar si los links funcionan (ok) o no (fail).
+            ${chalk.greenBright('--validate')} : para validar si los links funcionan (ok) o no (fail).
             ${chalk.cyanBright('--stats')} : para obtener el número total de links y links únicos (no repetidos).
             ${chalk.yellow('--stats --validate o --validate --stats')} : para obtener total de links, links únicos y rotos (fail).
             ***************************************************************************************************`
