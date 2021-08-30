@@ -19,7 +19,8 @@ const mdLinks = (myPath, options) => {
       resolve(linksStatus(arrayLinks)); //devuelve: Promise { <pending> }
     }
     //{validate:false}
-    else if (!options.validate) {
+    //else if (!options.validate) {
+    else {
       resolve(arrayLinks);
     }
   });

@@ -32,7 +32,7 @@ const {
 //[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
 const argument = process.argv.slice(2); //para considerar arg[0]. desde posición 2
 //const argument = process.argv.slice(0);
-
+//console.log("ARGUMENT: ***", argument)
 const cli = (argument) => {
   if (isPath(argument[0])) { //[2]
     if (linksOfFileMd(argument[0]).length > 0) { //verifica si hay links
@@ -114,7 +114,7 @@ const cli = (argument) => {
   }
 }
 cli(argument);
-
+//cli();
 
 module.exports = {
   cli, //Interfaz de Línea de Comando

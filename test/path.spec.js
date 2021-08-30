@@ -1,12 +1,12 @@
 //test: npm test ../path.spec.js
 
 const {
-  isPath, //Verifica si existe ruta
-  isPathAbsolute, //Verifica y transforma a ruta abs
-  isPathFile, //Verifica si es archivo
-  showFileExt, //Muestra extensión de archivo
-  readDirectory, //Lee un directorio
-  readFileMd, //Lee un archivo en terminal
+  isPath,
+  isPathAbsolute,
+  isPathFile,
+  showFileExt,
+  readDirectory,
+  readFileMd,
 } = require('../src/api/path')
 
 
@@ -66,7 +66,7 @@ describe('showFileExt', () => {
   });
 });
 
-//LEER DIRECTORIO
+//LEE DIRECTORIO
 describe('readDirectory', () => {
   it('should be a function', () => {
     expect(typeof readDirectory).toBe('function');
@@ -76,7 +76,7 @@ describe('readDirectory', () => {
   });
 });
 
-//LEER UN ARCHIVO
+//LEE UN ARCHIVO
 describe('readFileMd', () => {
   it('should be a function', () => {
     expect(typeof readFileMd).toBe('function');

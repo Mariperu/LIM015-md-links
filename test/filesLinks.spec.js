@@ -1,13 +1,13 @@
 //test: npm test ../filesLinks.spec.js
 
 const {
-  linksOfFileMd, //array
-  linksStatus, //array de promesas
+  linksOfFileMd,
+  linksStatus,
 
 } = require('../src/api/filesLinks')
 
 
-//VERIFICANDO SI archivo.md TIENE LINKS, Y GUARDANDO SUS PROPIEDADES EN ARRAY
+//VERIFICA SI FILE TIENE LINKS, GUARDA SUS PROPIEDADES EN ARRAY
 describe('linksOfFileMd', () => {
   it('should be a function', () => {
     expect(typeof linksOfFileMd).toBe('function');
@@ -21,7 +21,7 @@ describe('linksOfFileMd', () => {
 });
 
 
-//ALMACENANDO STATUS DE LINKS {href, text, file, status, statusText} EN ARRAY
+//ALMACENA STATUS DE LINKS EN ARRAY
 describe('linksStatus', () => {
   it('should be a function', () => {
     expect(typeof linksStatus).toBe('function');
@@ -41,12 +41,12 @@ describe('linksStatus', () => {
     statusText: "ok",
   }];
 
-  it('should return status 200 and `ok` text when promise is resolved', (resolve) => {
-    linksStatus(arrayOk).then((response) => {
+  test('should return status 200 and `ok` text when promise is resolved', () => {
+    return linksStatus(arrayOk).then((response) => {
       expect(response).toEqual(statusOk);
-      resolve(); //fuction resolve
     });
   });
+
 
   const arrayFail = [{
     file: './test/directory/file1.md',
@@ -62,10 +62,9 @@ describe('linksStatus', () => {
     statusText: "fail",
   }];
 
-  it('should return status 404 and `fail` text when promise is resolved', (resolve) => {
-    linksStatus(arrayFail).then((response) => {
+  test('should return status 404 and `fail` text when promise is resolved', () => {
+    return linksStatus(arrayFail).then((response) => {
       expect(response).toEqual(statusFail);
-      resolve(); //fuction resolve
     })
   });
 
@@ -79,33 +78,38 @@ describe('linksStatus', () => {
     file: "./test/directory/file1.md",
     href: "https://otra-cosa.net/algun-doc.html",
     text: "AlgunDoc",
-    status: "error",
+    status: 404,
     statusText: "fail",
   }];
 
-  it('should return status `error` and `fail` text when promise is rejected', (reject) => {
-    linksStatus(arrayError).then((response) => {
-      expect(response).toEqual(statusError);
-      reject();
+  test('should return status 404 and `fail` text when promise is rejected', () => {
+    //expect.assertions(1); // para verificar que un cierto número de afirmaciones están siendo llamadas.
+    return linksStatus(arrayError).catch((e) => {
+      expect(e).toEqual(statusError);
     })
   });
 });
 
 
-
-
-// it('should return status 200 and `ok` text when promise is resolved', () => {
-//   linksStatusOfFileMd(arrayOk).then(setTimeout((response) => {
-//     const statusOk = ["./fixedPathFiles/moreFiles/extraFile.md http://algo.com/2/3/ Algo 200 ok"];
-//     expect(response).toStrictEqual(statusOk);
-//   }), 1000)
+// it('should return status 200 and `ok` text when promise is resolved', (resolve) => {
+//   linksStatus(arrayOk).then((response) => {
+//     expect(response).toEqual(statusOk);
+//     resolve(); //fuction resolve
+//   });
 // });
 
 
-//************* */
-// it('should return status 200 and `ok` text in an Array when promise is resolved', (resolve) => {
-//   linksStatus(arrayOk).then((response) => {
-//     expect(response).not.toHaveLength(0);
+// it('should return status 404 and `fail` text when promise is resolved', (resolve) => {
+//   linksStatus(arrayFail).then((response) => {
+//     expect(response).toEqual(statusFail);
 //     resolve(); //fuction resolve
+//   })
+// });
+
+
+// it('should return status 404 and `fail` text when promise is rejected', (reject) => {
+//   linksStatus(arrayError).then((response) => {
+//     expect(response).toEqual(statusError);
+//     reject();
 //   })
 // });
