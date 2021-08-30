@@ -27,7 +27,7 @@ const {
 
 const {
   mdLinks,
-} = require('../api/mdLinks');
+} = require('../api/index');
 
 //[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
 const argument = process.argv.slice(2); //para considerar arg[0]. desde posición 2

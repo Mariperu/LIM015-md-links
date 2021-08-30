@@ -1,5 +1,5 @@
-//Terminal: node ./src/api/mdLinks ./test/directory/file1.md
-//Terminal: node ./src/api/mdLinks ./README.md
+//Terminal: node ./src/api/index ./test/directory/file1.md
+//Terminal: node ./src/api/index ./README.md
 
 const {
   linksOfFileMd, //array
