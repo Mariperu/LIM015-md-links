@@ -1,19 +1,19 @@
 # 💻 Markdown Links 🔗
 
-## Índice 
-- [1. Descripción del módulo](#1-descripción-del-módulo-👩‍💻)
-- [2. Instrucciones de instalación](#2-instrucciones-de-instalación-🔌)
-- [3. Instrucciones de uso](#3-instrucciones-de-uso-📚)
-- [4. Flowcharts API/CLI](#4-Flowcharts-🔗)
+## Índice
+- [1. Descripción del módulo](#1-descripción-del-módulo👩‍💻)
+- [2. Instrucciones de instalación](#2-instrucciones-de-instalación🔌)
+- [3. Instrucciones de uso](#3-instrucciones-de-uso📚)
+- [4. Flowcharts API/CLI](#4-Flowcharts🔗)
 ---
 
-## 1. Descripción del módulo 👩‍💻
+## 1. Descripción del módulo👩‍💻
 
 Muchas veces cuando se quiere compartir información, existen partes de los archivos como son los links, que en el tiempo han quedado inválidos, no existen o han sido redireccionados, el cual perjudica el valor de lo que se quiere compartir. Por ello, nace la necesidad de crear una librería que ayude a optimizar esta información, por medio de la validación y algunos cálculos estadísticos de los links.
 
 **Markdown Links** es una librería que _permite extraer información de los links_ contenidos en  archivos con extensión ".md" (Markdown). La librería esta implementada en JavaScript para ser ejecutada con Node.js.
 
-## 2. Instrucciones de instalación 🔌
+## 2. Instrucciones de instalación🔌
 ...Verificar, falta completar
 
 - **Intalacion por npm:**
@@ -33,7 +33,7 @@ Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Est
   comando como una interfaz que podamos importar con `require` para usarlo
   programáticamente.
 
-## 3. Instrucciones de uso 📚
+## 3. Instrucciones de uso📚
 
 💁 Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link. ✍️
 
@@ -79,8 +79,8 @@ Por ejemplo `./test/directory/file1.md --help` devuelve:
 ![Instructions](./src/img/instruc.jpg)
 
 
-## 4. Flowcharts 🔗
-- API 
+## 4. Flowcharts🔗
+- API
 ![FlowchartAPI](./src/img/API.jpg)
 
 - CLI
