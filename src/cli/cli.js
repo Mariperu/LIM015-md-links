@@ -1,11 +1,12 @@
 #! / usr / bin / env nodo
- //VER https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
+ //#!/usr/bin/env nodo
 //Para que se ejecute el módulo con npm
+//VER https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
+
 
 //TERMINAL: node ./src/cli/cli.js ./test/directory/file1.md --validate
 //✔️❌❗️
 //CLI - Interfaz de Línea de Comando
-
 
 
 //Ejecutando módulo chalk, para colocar colores en líneas de comando
