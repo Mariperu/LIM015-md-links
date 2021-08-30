@@ -1,6 +1,94 @@
-# Markdown Links
+# 💻 Markdown Links 🔗
 
 ## Índice
+- [1. Descripción del módulo](#1-descripción-del-módulo👩‍💻)
+- [2. Instrucciones de instalación](#2-instrucciones-de-instalación🔌)
+- [3. Instrucciones de uso](#3-instrucciones-de-uso📚)
+- [4. Flowcharts API/CLI](#4-Flowcharts🔗)
+---
+
+## 1. Descripción del módulo👩‍💻
+
+Muchas veces cuando se quiere compartir información, existen partes de los archivos como son los links, que en el tiempo han quedado inválidos, no existen o han sido redireccionados, el cual perjudica el valor de lo que se quiere compartir. Por ello, nace la necesidad de crear una librería que ayude a optimizar esta información, por medio de la validación y algunos cálculos estadísticos de los links.
+
+**Markdown Links** es una librería que _permite extraer información de los links_ contenidos en  archivos con extensión ".md" (Markdown). La librería esta implementada en JavaScript para ser ejecutada con Node.js.
+
+## 2. Instrucciones de instalación🔌
+...Verificar, falta completar
+
+- **Intalacion por npm:**
+Instalar la libreria via:
+`npm install <github-user>/md-links`
+npm i md-links-lim015
+
+- **Instalacion por github:**
+  Ejemplo: `npm i --global  <github-user>/LIM015-mdlinks`
+
+Para hacer uso de la librería, esta se debe importar en tu archivo.js. Ejemplo: `const mdLinks = require('md-links-lim015')`
+
+
+******PARA CONSIDERAR**.....:
+Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
+  módulo debe incluir tanto un _ejecutable_ que podamos invocar en la línea de
+  comando como una interfaz que podamos importar con `require` para usarlo
+  programáticamente.
+
+## 3. Instrucciones de uso📚
+
+💁 Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link. ✍️
+
+Por ejemplo `./test/directory/file1.md` devuelve:
+```sh
+$ md-links ./test/directory/file1.md
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://google.com/ Google
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://www.midominio.es/doc-nuevo.html Prueba
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc
+```
+
+💁 Para **validar links**, ingresaremos a continuación de la ruta, la opción: **--validate**, del cual además de visualizar los datos anteriores, _mostrará el código de status de HTTP_ (como 200 o 404) y un mensaje _"ok"_ en caso de éxito o _"fail"_ en caso de fallo. ✍️
+
+Por ejemplo `./test/directory/file1.md --validate` devuelve:
+```sh
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://google.com/ Google 200 ok
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo 200 ok
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo 200 ok
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://www.midominio.es/doc-nuevo.html Prueba 404 fail
+C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc 404 fail
+```
+
+💁 Ingresando la opción: **--stats** luego de la ruta; la librería realizará **cálculos estadísticos**  basado en el **total de links** encontrados (_total_) y **links únicos** (_unique_). ✍️
+
+Por ejemplo `./test/directory/file1.md --stats` devuelve:
+```
+Total: 5
+Unique: 4
+```
+💁 Además, si ingresamos en conjunto las opciones: **--validate --stats** (o viceversa) luego de la ruta, se mostrará también la cantidad de **links rotos** (_broken_) o en otras palabras, cantidad de links que contienen mensaje _"fail"_. ✍️
+
+Por ejemplo `./test/directory/file1.md --stats --validate` devuelve:
+```
+Total: 5
+Unique: 4
+Broken: 2
+```
+💁En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_. ✍️
+
+Por ejemplo `./test/directory/file1.md --help` devuelve:
+![Instructions](./src/img/instruc.jpg)
+
+
+## 4. Flowcharts🔗
+- API
+![FlowchartAPI](./src/img/API.jpg)
+
+- CLI
+![FlowchartCLI](./src/img/CLI.jpg)
+---
+
+# Markdown Links
+## Índice de Proyecto
 
 - [1. Preámbulo](#1-preámbulo)
 - [2. Resumen del proyecto](#2-resumen-del-proyecto)
@@ -60,9 +148,9 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### JavaScript
 
-- [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
+- [x] **Diferenciar entre tipos de datos primitivos y no primitivos**
 
-- [ ] **Arrays (arreglos)**
+- [x] **Arrays (arreglos)**
 
     <details><summary>Links</summary><p>
 
@@ -75,14 +163,14 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
   </p></details>
 
-- [ ] **Objetos (key, value)**
+- [x] **Objetos (key, value)**
 
     <details><summary>Links</summary><p>
 
   - [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects)
   </p></details>
 
-- [ ] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+- [x] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
 
     <details><summary>Links</summary><p>
 
@@ -90,7 +178,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
   </p></details>
 
-- [ ] **Funciones (params, args, return)**
+- [x] **Funciones (params, args, return)**
 
     <details><summary>Links</summary><p>
 
@@ -100,7 +188,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Funciones — bloques de código reutilizables - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions)
   </p></details>
 
-- [ ] **Recursión o recursividad**
+- [x] **Recursión o recursividad**
 
     <details><summary>Links</summary><p>
 
@@ -108,23 +196,23 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Recursión o Recursividad - Laboratoria Developers en Medium](https://medium.com/laboratoria-developers/recursi%C3%B3n-o-recursividad-ec8f1a359727)
   </p></details>
 
-- [ ] **Módulos de CommonJS**
+- [x] **Módulos de CommonJS**
 
     <details><summary>Links</summary><p>
 
   - [Modules: CommonJS modules - Node.js Docs](https://nodejs.org/docs/latest/api/modules.html)
   </p></details>
 
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
+- [x] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
 
-- [ ] **Callbacks**
+- [x] **Callbacks**
 
     <details><summary>Links</summary><p>
 
   - [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
   </p></details>
 
-- [ ] **Promesas**
+- [x] **Promesas**
 
     <details><summary>Links</summary><p>
 
@@ -132,7 +220,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
   </p></details>
 
-- [ ] **Pruebas unitarias (unit tests)**
+- [x] **Pruebas unitarias (unit tests)**
 
     <details><summary>Links</summary><p>
 
@@ -155,41 +243,41 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 - [ ] **Pruebas de compatibilidad en múltiples entornos de ejecución**
 
-- [ ] **Uso de linter (ESLINT)**
+- [x] **Uso de linter (ESLINT)**
 
-- [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
+- [x] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
 
 ### Node.js
 
-- [ ] **Instalar y usar módulos con npm**
+- [x] **Instalar y usar módulos con npm**
 
     <details><summary>Links</summary><p>
 
   - [Sitio oficial de npm (en inglés)](https://www.npmjs.com/)
   </p></details>
 
-- [ ] **Configuración de package.json**
+- [x] **Configuración de package.json**
 
     <details><summary>Links</summary><p>
 
   - [package.json - Documentación oficial (en inglés)](https://docs.npmjs.com/files/package.json)
   </p></details>
 
-- [ ] **Configuración de npm-scripts**
+- [x] **Configuración de npm-scripts**
 
     <details><summary>Links</summary><p>
 
   - [scripts - Documentación oficial (en inglés)](https://docs.npmjs.com/misc/scripts)
   </p></details>
 
-- [ ] **process (env, argv, stdin-stdout-stderr, exit-code)**
+- [x] **process (env, argv, stdin-stdout-stderr, exit-code)**
 
     <details><summary>Links</summary><p>
 
   - [Process - Documentación oficial (en inglés)](https://nodejs.org/api/process.html)
   </p></details>
 
-- [ ] **File system (fs, path)**
+- [x] **File system (fs, path)**
 
     <details><summary>Links</summary><p>
 
@@ -199,28 +287,28 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### Control de Versiones (Git y GitHub)
 
-- [ ] **Git: Instalación y configuración**
+- [x] **Git: Instalación y configuración**
 
-- [ ] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
+- [x] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
 
-- [ ] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
+- [x] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
 
-- [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
+- [x] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
 
-- [ ] **GitHub: Despliegue con GitHub Pages**
+- [x] **GitHub: Despliegue con GitHub Pages**
 
     <details><summary>Links</summary><p>
 
   - [Sitio oficial de GitHub Pages](https://pages.github.com/)
   </p></details>
 
-- [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
+- [x] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 
-- [ ] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
+- [x] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
 
 ### HTTP
 
-- [ ] **Consulta o petición (request) y respuesta (response).**
+- [x] **Consulta o petición (request) y respuesta (response).**
 
     <details><summary>Links</summary><p>
 
@@ -228,7 +316,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
   </p></details>
 
-- [ ] **Codigos de status de HTTP**
+- [x] **Codigos de status de HTTP**
 
     <details><summary>Links</summary><p>
 
@@ -520,23 +608,23 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 
 ### `README.md`
 
-- [ ] Un board con el backlog para la implementación de la librería.
-- [ ] Documentación técnica de la librería.
-- [ ] Guía de uso e instalación de la librería
+- [x] Un board con el backlog para la implementación de la librería.
+- [x] Documentación técnica de la librería.
+- [x] Guía de uso e instalación de la librería
 
 ### API `mdLinks(path, opts)`
 
-- [ ] El módulo exporta una función con la interfaz (API) esperada.
-- [ ] Implementa soporte para archivo individual
-- [ ] Implementa soporte para directorios
-- [ ] Implementa `options.validate`
+- [x] El módulo exporta una función con la interfaz (API) esperada.
+- [x] Implementa soporte para archivo individual
+- [x] Implementa soporte para directorios
+- [x] Implementa `options.validate`
 
 ### CLI
 
 - [ ] Expone ejecutable `md-links` en el path (configurado en `package.json`)
 - [ ] Se ejecuta sin errores / output esperado
-- [ ] Implementa `--validate`
-- [ ] Implementa `--stats`
+- [x] Implementa `--validate`
+- [x] Implementa `--stats`
 
 ### Pruebas / tests
 

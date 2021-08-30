@@ -1,4 +1,41 @@
 {
-  "name": "md-links",
-  "version": "0.1.0"
+  "name": "maritza-mdlinks",
+  "version": "0.1.0",
+  "description": "Valida links de archivos Markdown",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "bin": {
+    "mdLinks": "src/cli/cli.js"
+  },
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mariperu/LIM015-md-links.git"
+  },
+  "keywords": [
+    "node.js",
+    "javascript",
+    "npm",
+    "cli",
+    "api",
+    "mdLinks"
+  ],
+  "author": "Maritza Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mariperu/LIM015-md-links/issues"
+  },
+  "homepage": "https://github.com/Mariperu/LIM015-md-links#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "eslint": "^7.31.0",
+    "jest": "^27.0.6",
+    "jsdom": "^16.7.0",
+    "marked": "^2.1.3",
+    "node-fetch": "^2.6.1"
+  }
 }
