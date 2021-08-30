@@ -1,10 +1,13 @@
 {
-  "name": "md-links",
+  "name": "maritza-mdlinks",
   "version": "0.1.0",
-  "description": "- [1. Preámbulo](#1-preámbulo)\r - [2. Resumen del proyecto](#2-resumen-del-proyecto)\r - [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)\r - [4. Consideraciones generales](#4-consideraciones-generales)\r - [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)\r - [6. Entregables](#6-entregables)\r - [7. Hacker edition](#7-hacker-edition)\r - [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)\r - [9. Checklist](#9-checklist)\r - [10. Achicando el problema](#10-achicando-el-problema)",
+  "description": "Valida links de archivos Markdown",
   "main": "index.js",
   "directories": {
     "test": "test"
+  },
+  "bin": {
+    "mdLinks": "src/cli/cli.js"
   },
   "scripts": {
     "test": "jest --verbose --coverage"
@@ -13,7 +16,15 @@
     "type": "git",
     "url": "git+https://github.com/Mariperu/LIM015-md-links.git"
   },
-  "author": "Maritza",
+  "keywords": [
+    "node.js",
+    "javascript",
+    "npm",
+    "cli",
+    "api",
+    "mdLinks"
+  ],
+  "author": "Maritza Rodriguez",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Mariperu/LIM015-md-links/issues"
@@ -22,7 +33,6 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "eslint": "^7.31.0",
-    "fetch-mock": "^9.11.0",
     "jest": "^27.0.6",
     "jsdom": "^16.7.0",
     "marked": "^2.1.3",
