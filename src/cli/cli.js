@@ -1,5 +1,5 @@
-#!/usr/bin/env nodo
- //#!/usr/bin/env node  //Para que se ejecute el módulo con npm
+#!/usr/bin/env node
+ //Para que se ejecute el módulo con npm
 
 //CLI - INTERFAZ DE LINEA DE COMANDO
 //terminal: node ./src/cli/cli.js ./test/directory/file1.md --validate
