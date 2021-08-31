@@ -1,5 +1,5 @@
+//FUNCION MD-LINKS
 //Terminal: node ./src/api/index ./test/directory/file1.md
-//Terminal: node ./src/api/index ./README.md
 
 const {
   linksOfFileMd, //array
@@ -8,24 +8,24 @@ const {
 
 //const myPath = process.argv[2];
 
-
 //FUNCION PARA VALIDAR LINKS DE FILES .md
 const mdLinks = (myPath, options) => {
   const arrayLinks = linksOfFileMd(myPath);
-  //if (arrayLinks.length > 0) {
   return new Promise((resolve) => {
     //{validate:true}
     if (options.validate) {
       resolve(linksStatus(arrayLinks)); //devuelve: Promise { <pending> }
     }
-    //{validate:false}
-    //else if (!options.validate) {
+    //{validate:false} //else if (!options.validate) {
     else {
       resolve(arrayLinks);
     }
   });
-  //}
 }
+
+module.exports = {
+  mdLinks, //valida links
+};
 
 // (mdLinks(myPath, {
 //   validate: true
@@ -37,8 +37,3 @@ const mdLinks = (myPath, options) => {
 // })).then((res) => {
 //   console.log(res)
 // });
-
-
-module.exports = {
-  mdLinks, //valida links
-};

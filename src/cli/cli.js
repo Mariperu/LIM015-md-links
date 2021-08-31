@@ -4,38 +4,31 @@
 //CLI - INTERFAZ DE LINEA DE COMANDO
 //terminal: node ./src/cli/cli.js ./test/directory/file1.md --validate
 
-
-//Ejecutando módulo chalk, para colocar colores en líneas de comando
-const chalk = require('chalk');
+const chalk = require('chalk'); //Ejecutando módulo chalk, para colocar colores en líneas de comando
 
 const {
   isPath,
 } = require('../api/path');
-
 const {
   linksOfFileMd, //array
 } = require('../api/filesLinks');
-
 const {
   countTotal,
   countUnique,
   countBroken,
 } = require('./stats');
-
 const {
   mdLinks,
 } = require('../api/index');
 
 //[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
-const argument = process.argv.slice(2); //para considerar arg[0]. desde posición 2
-//const argument = process.argv.slice(0);
-//console.log("ARGUMENT: ***", argument)
+const argument = process.argv.slice(2); //para considerar arg[0]. desde posición[2]
+
 const cli = (argument) => {
   if (isPath(argument[0])) { //[2]
     if (linksOfFileMd(argument[0]).length > 0) { //verifica si hay links
-      //RUTA
-      if (argument.length === 1) { //myPath
-
+      //myPATH
+      if (argument.length === 1) {
         mdLinks(argument[0], {
           validate: false
         }).then((response) => {
@@ -44,6 +37,7 @@ const cli = (argument) => {
           })
         });
       }
+
       //OPTION: --validate || --stats || --help
       else if (argument.length === 2) {
         switch (argument[1]) {
@@ -111,7 +105,6 @@ const cli = (argument) => {
   }
 }
 cli(argument);
-//cli();
 
 module.exports = {
   cli, //Interfaz de Línea de Comando
