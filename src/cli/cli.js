@@ -1,11 +1,8 @@
-#! / usr / bin / env nodo
- //#!/usr/bin/env nodo
-//#!/usr/bin/env node
+#!/usr/bin/env nodo
+ //#!/usr/bin/env node  //Para que se ejecute el módulo con npm
 
-//Para que se ejecute el módulo con npm
-
-//CLI - Interfaz de Línea de Comando
-//TERMINAL: node ./src/cli/cli.js ./test/directory/file1.md --validate
+//CLI - INTERFAZ DE LINEA DE COMANDO
+//terminal: node ./src/cli/cli.js ./test/directory/file1.md --validate
 
 
 //Ejecutando módulo chalk, para colocar colores en líneas de comando
