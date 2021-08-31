@@ -1,8 +1,8 @@
 {
   "name": "maritza-mdlinks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Valida links de archivos Markdown",
-  "main": "index.js",
+  "main": "src/api/index.js",
   "directories": {
     "test": "test"
   },
