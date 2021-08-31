@@ -1,5 +1,7 @@
 #! / usr / bin / env nodo
  //#!/usr/bin/env nodo
+//#!/usr/bin/env node
+
 //Para que se ejecute el módulo con npm
 
 //CLI - Interfaz de Línea de Comando
