@@ -106,6 +106,4 @@ const cli = (argument) => {
 }
 cli(argument);
 
-module.exports = {
-  cli, //Interfaz de Línea de Comando
-};
+module.exports = cli //Interfaz de Línea de Comando
