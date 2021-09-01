@@ -222,7 +222,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   - [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
   </p></details>
 
-- [ ] **Pruebas asíncronas**
+- [x] **Pruebas asíncronas**
 
     <details><summary>Links</summary><p>
 
@@ -599,7 +599,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 
 ### General
 
-- [ ] Puede instalarse via `npm install --global <github-user>/md-links`
+- [x] Puede instalarse via `npm install --global <github-user>/md-links`
 
 ### `README.md`
 
@@ -616,16 +616,16 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 
 ### CLI
 
-- [ ] Expone ejecutable `md-links` en el path (configurado en `package.json`)
-- [ ] Se ejecuta sin errores / output esperado
+- [x] Expone ejecutable `md-links` en el path (configurado en `package.json`)
+- [x] Se ejecuta sin errores / output esperado
 - [x] Implementa `--validate`
 - [x] Implementa `--stats`
 
 ### Pruebas / tests
 
-- [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
+- [x] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
       lines, y branches.
-- [ ] Pasa tests (y linters) (`npm test`).
+- [x] Pasa tests (y linters) (`npm test`).
 
 ## 10. Achicando el problema
 
