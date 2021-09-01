@@ -89,27 +89,3 @@ describe('linksStatus', () => {
     })
   });
 });
-
-
-// it('should return status 200 and `ok` text when promise is resolved', (resolve) => {
-//   linksStatus(arrayOk).then((response) => {
-//     expect(response).toEqual(statusOk);
-//     resolve(); //fuction resolve
-//   });
-// });
-
-
-// it('should return status 404 and `fail` text when promise is resolved', (resolve) => {
-//   linksStatus(arrayFail).then((response) => {
-//     expect(response).toEqual(statusFail);
-//     resolve(); //fuction resolve
-//   })
-// });
-
-
-// it('should return status 404 and `fail` text when promise is rejected', (reject) => {
-//   linksStatus(arrayError).then((response) => {
-//     expect(response).toEqual(statusError);
-//     reject();
-//   })
-// });
