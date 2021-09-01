@@ -17,9 +17,9 @@ const {
   countUnique,
   countBroken,
 } = require('./stats');
-const {
-  mdLinks,
-} = require('../api/index');
+
+const mdLinks = require('../api/index');
+
 
 //[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
 const argument = process.argv.slice(2); //para considerar arg[0]. desde posición[2]
@@ -106,4 +106,4 @@ const cli = (argument) => {
 }
 cli(argument);
 
-module.exports = cli //Interfaz de Línea de Comando
+module.exports = cli; //Interfaz de Línea de Comando

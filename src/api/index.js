@@ -23,7 +23,7 @@ const mdLinks = (myPath, options) => {
   });
 }
 
-module.exports = mdLinks //valida links
+module.exports = mdLinks; //valida links
 
 
 // (mdLinks(myPath, {
