@@ -15,21 +15,17 @@
 
 ## 2. Instrucciones de instalación
 
-- **Intalación por npm:** 🔌
-
-`npm i maritza-mdlinks`
+- **Intalación por npm:** 🔌  `npm i maritza-mdlinks`
 
 - **Instalación por github:** 🔌
 
-Instalar la libreria via:
-
  **`npm install https://github.com/Mariperu/LIM015-md-links`**
+ 
+ **`npm install -global https://github.com/Mariperu/LIM015-md-links`**
 
 Para hacer uso de la librería, esta se debe importar en tu archivo javaScript de la siguiente manera:
 
 `const mdLinks = require('maritza-mdlinks');`
-
-**`npm install -global https://github.com/Mariperu/LIM015-md-links`**
 
 Para invocar en la línea de comando, ejecutar con: `$ mdLinks <path-to-file> [options]`
 
