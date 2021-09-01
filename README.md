@@ -27,7 +27,7 @@ Para hacer uso de la librería, esta se debe importar en tu archivo javaScript d
 `npm install -global  <github-user>/LIM015-md-links`
 **`npm install -global https://github.com/Mariperu/LIM015-md-links`**
 
-Para invocar en la línea de comando, ejecutar con: `$ mdLinks <path-to-file> [options]`
+Para invocar en la línea de comando, ejecutar con:  `$ mdLinks <path-to-file> [options]`
 
 ## 3. Instrucciones de uso
 📚
