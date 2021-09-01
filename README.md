@@ -1,45 +1,41 @@
 # 💻 Markdown Links 🔗
 
 ## Índice
-- [1. Descripción del módulo](#1-descripción-del-módulo👩‍💻)
-- [2. Instrucciones de instalación](#2-instrucciones-de-instalación🔌)
-- [3. Instrucciones de uso](#3-instrucciones-de-uso📚)
-- [4. Flowcharts API/CLI](#4-Flowcharts🔗)
+- [1. Descripción del módulo](#1-descripción-del-módulo)
+- [2. Instrucciones de instalación](#2-instrucciones-de-instalación)
+- [3. Instrucciones de uso](#3-instrucciones-de-uso)
+- [4. Flowcharts API/CLI](#4-Flowcharts)
 ---
 
-## 1. Descripción del módulo👩‍💻
-
+## 1. Descripción del módulo
+👩‍💻
 Muchas veces cuando se quiere compartir información, existen partes de los archivos como son los links, que en el tiempo han quedado inválidos, no existen o han sido redireccionados, el cual perjudica el valor de lo que se quiere compartir. Por ello, nace la necesidad de crear una librería que ayude a optimizar esta información, por medio de la validación y algunos cálculos estadísticos de los links.
 
 **Markdown Links** es una librería que _permite extraer información de los links_ contenidos en  archivos con extensión ".md" (Markdown). La librería esta implementada en JavaScript para ser ejecutada con Node.js.
 
-## 2. Instrucciones de instalación🔌
-...Verificar, falta completar
-
-- **Intalacion por npm:**
+## 2. Instrucciones de instalación
+🔌
+- **Intalación por npm:**
 Instalar la libreria via:
-`npm install <github-user>/md-links`
-npm i md-links-lim015
+`npm install <github-user>/LIM015-md-links`
+**`npm install https://github.com/Mariperu/LIM015-md-links`**
 
-- **Instalacion por github:**
-  Ejemplo: `npm i --global  <github-user>/LIM015-mdlinks`
+Para hacer uso de la librería, esta se debe importar en tu archivo javaScript de la siguiente manera:
+`const mdLinks = require('maritza-mdlinks');`
 
-Para hacer uso de la librería, esta se debe importar en tu archivo.js. Ejemplo: `const mdLinks = require('md-links-lim015')`
+- **Instalación por github:**
+`npm install -global  <github-user>/LIM015-md-links`
+**`npm install -global https://github.com/Mariperu/LIM015-md-links`**
 
+Para invocar en la línea de comando, ejecutar con: `$ mdLinks <path-to-file> [options]`
 
-******PARA CONSIDERAR**.....:
-Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
-  módulo debe incluir tanto un _ejecutable_ que podamos invocar en la línea de
-  comando como una interfaz que podamos importar con `require` para usarlo
-  programáticamente.
+## 3. Instrucciones de uso
+📚
 
-## 3. Instrucciones de uso📚
+💁Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link.
 
-💁 Luego de ingresar la _ruta_ (de un directorio o archivo) en consulta, visualizará información de los links como: ruta de archivo Markdown, link (o url) y texto que contiene el link. ✍️
-
-Por ejemplo `./test/directory/file1.md` devuelve:
+✍️Por ejemplo `$ mdLinks ./test/directory/file1.md` devuelve:
 ```sh
-$ md-links ./test/directory/file1.md
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://google.com/ Google
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo
@@ -47,9 +43,9 @@ C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://ww
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc
 ```
 
-💁 Para **validar links**, ingresaremos a continuación de la ruta, la opción: **--validate**, del cual además de visualizar los datos anteriores, _mostrará el código de status de HTTP_ (como 200 o 404) y un mensaje _"ok"_ en caso de éxito o _"fail"_ en caso de fallo. ✍️
+💁Para **validar links**, ingresaremos a continuación de la ruta, la opción: **--validate**, del cual además de visualizar los datos anteriores, _mostrará el código de status de HTTP_ (como 200 o 404) y un mensaje _"ok"_ en caso de éxito o _"fail"_ en caso de fallo.
 
-Por ejemplo `./test/directory/file1.md --validate` devuelve:
+✍️Por ejemplo `$ mdLinks ./test/directory/file1.md --validate` devuelve:
 ```sh
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://google.com/ Google 200 ok
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://algo.com/2/3/ Algo 200 ok
@@ -58,32 +54,32 @@ C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md http://ww
 C:\Users\Name\Documents\GitHub\LIM015-md-links\test\directory\file1.md https://otra-cosa.net/algun-doc.html AlgunDoc 404 fail
 ```
 
-💁 Ingresando la opción: **--stats** luego de la ruta; la librería realizará **cálculos estadísticos**  basado en el **total de links** encontrados (_total_) y **links únicos** (_unique_). ✍️
+💁 Ingresando la opción: **--stats** luego de la ruta; la librería realizará **cálculos estadísticos**  basado en el **total de links** encontrados (_total_) y **links únicos** (_unique_).
 
-Por ejemplo `./test/directory/file1.md --stats` devuelve:
+✍️Por ejemplo `$ mdLinks ./test/directory/file1.md --stats` devuelve:
 ```
 Total: 5
 Unique: 4
 ```
-💁 Además, si ingresamos en conjunto las opciones: **--validate --stats** (o viceversa) luego de la ruta, se mostrará también la cantidad de **links rotos** (_broken_) o en otras palabras, cantidad de links que contienen mensaje _"fail"_. ✍️
+💁 Además, si ingresamos en conjunto las opciones: **--validate --stats** (o viceversa) luego de la ruta, se mostrará también la cantidad de **links rotos** (_broken_) o en otras palabras, cantidad de links que contienen mensaje _"fail"_.
 
-Por ejemplo `./test/directory/file1.md --stats --validate` devuelve:
+✍️Por ejemplo `$ mdLinks ./test/directory/file1.md --stats --validate` devuelve:
 ```
 Total: 5
 Unique: 4
 Broken: 2
 ```
-💁En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_. ✍️
+💁En caso de necesitar **ayuda**, ingresamos la opción **--help** luego de la ruta. Se visualizará un pequeño cuadro con _instrucciones de uso_.
 
-Por ejemplo `./test/directory/file1.md --help` devuelve:
+✍️Por ejemplo `$ mdLinks ./test/directory/file1.md --help` devuelve:
 ![Instructions](./src/img/instruc.jpg)
 
 
-## 4. Flowcharts🔗
-- API
+## 4. Flowcharts
+- API 🔗
 ![FlowchartAPI](./src/img/API.jpg)
 
-- CLI
+- CLI 🔗
 ![FlowchartCLI](./src/img/CLI.jpg)
 ---
 
