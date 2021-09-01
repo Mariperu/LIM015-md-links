@@ -16,9 +16,8 @@
 ## 2. Instrucciones de instalación
 
 - **Intalación por npm:** 🔌
-Instalar la libreria via:
 
-`npm install <github-user>/LIM015-md-links`
+Instalar la libreria via: `npm install <github-user>/LIM015-md-links`
 
 **`npm install https://github.com/Mariperu/LIM015-md-links`**
 
