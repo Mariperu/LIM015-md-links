@@ -1,16 +1,13 @@
 #!/usr/bin/env node
- //Para que se ejecute el módulo con npm
+ //CLI - INTERFAZ DE LINEA DE COMANDO
 
-//CLI - INTERFAZ DE LINEA DE COMANDO
-//terminal: node ./src/cli/cli.js ./test/directory/file1.md --validate
-
-const chalk = require('chalk'); //Ejecutando módulo chalk, para colocar colores en líneas de comando
+const chalk = require('chalk');
 
 const {
   isPath,
 } = require('../api/path');
 const {
-  linksOfFileMd, //array
+  linksOfFileMd,
 } = require('../api/filesLinks');
 const {
   countTotal,
@@ -21,13 +18,11 @@ const {
 const mdLinks = require('../api/index');
 
 
-//[0]:node / [1]:file.js / [2, 3, 4, ...]:arguments
-const argument = process.argv.slice(2); //para considerar arg[0]. desde posición[2]
+const argument = process.argv.slice(2);
 
 const cli = (argument) => {
   if (isPath(argument[0])) { //[2]
-    if (linksOfFileMd(argument[0]).length > 0) { //verifica si hay links
-      //myPATH
+    if (linksOfFileMd(argument[0]).length > 0) {
       if (argument.length === 1) {
         mdLinks(argument[0], {
           validate: false
@@ -36,10 +31,7 @@ const cli = (argument) => {
             console.log(`${chalk.magenta(link.file)} ${chalk.white(link.href)} ${chalk.cyanBright(link.text)}`); //Retorna {href, text, file}
           })
         });
-      }
-
-      //OPTION: --validate || --stats || --help
-      else if (argument.length === 2) {
+      } else if (argument.length === 2) {
         switch (argument[1]) {
 
           case '--validate':
@@ -80,9 +72,7 @@ const cli = (argument) => {
           default:
             console.log(chalk.cyanBright('Ingresa comandos válidos o escribe `--help` para ayudarte'));
         }
-      }
-      //OPTION: --validate & --stats
-      else if (argument.length === 3) {
+      } else if (argument.length === 3) {
         if ((argument[1] === '--validate' && argument[2] === '--stats') ||
           (argument[1] === '--stats' && argument[2] === '--validate')) {
 
@@ -106,4 +96,4 @@ const cli = (argument) => {
 }
 cli(argument);
 
-module.exports = cli; //Interfaz de Línea de Comando
+module.exports = cli;
