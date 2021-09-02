@@ -1,5 +1,3 @@
-//test: npm test ../filesMd.spec.js
-
 const {
   searchFilesAndDirs,
   searchFilesMd,
@@ -15,7 +13,6 @@ describe('searchFilesAndDirs', () => {
     expect(searchFilesAndDirs('./test/directory')).not.toHaveLength(0);
   });
 });
-
 
 //BUSCA FILES MD
 describe('searchFilesMd', () => {

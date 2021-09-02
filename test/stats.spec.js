@@ -1,5 +1,3 @@
-//test: npm test ../stats.spec.js
-
 const {
   countTotal,
   countUnique,

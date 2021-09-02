@@ -1,4 +1,3 @@
-//test: npm test ../index.spec.js
 const mdLinks = require('../src/api/index')
 
 

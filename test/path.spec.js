@@ -1,5 +1,3 @@
-//test: npm test ../path.spec.js
-
 const {
   isPath,
   isPathAbsolute,

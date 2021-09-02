@@ -1,9 +1,6 @@
-//test: npm test ../filesLinks.spec.js
-
 const {
   linksOfFileMd,
   linksStatus,
-
 } = require('../src/api/filesLinks')
 
 
@@ -83,7 +80,6 @@ describe('linksStatus', () => {
   }];
 
   test('should return status 404 and `fail` text when promise is rejected', () => {
-    //expect.assertions(1); // para verificar que un cierto número de afirmaciones están siendo llamadas.
     return linksStatus(arrayError).catch((e) => {
       expect(e).toEqual(statusError);
     })
